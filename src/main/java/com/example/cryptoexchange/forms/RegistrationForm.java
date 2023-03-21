@@ -1,6 +1,7 @@
 package com.example.cryptoexchange.forms;
 
 import com.example.cryptoexchange.entity.User;
+import com.example.cryptoexchange.entity.Wallet;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,30 +19,15 @@ import javax.validation.constraints.Size;
 public class RegistrationForm {
 
     @NonNull
-    @Size(min = 5)
+    @Size(min = 5, message = "Логин должен содержать минимум 5 символов")
     private String username;
 
     @NonNull
+    @Size(min = 6, message = "Пароль должен содержать минимум 6 символов")
     private String password;
-
-    @NonNull
-    @Pattern(regexp = "^[А-ЯA-Z][a-zа-яё]+$")
-    private String lastname;
-
-    @NonNull
-    @Pattern(regexp = "^[А-ЯA-Z][a-zа-яё]+$")
-    private String name;
-
-    @NonNull
-    @Pattern(regexp = "(^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$)|(^\\s*$)", message = "Укажите, пожалуйста, корректный номер")
-    private String phoneNumber;
-
-    @NonNull
-    @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$", message = "Укажите, пожалуйста, корректный email")
-    private String email;
 
 
     public User toUser(PasswordEncoder passwordEncoder) {
-        return new User(username, passwordEncoder.encode(password), lastname, name, phoneNumber, email);
+        return new User(username, passwordEncoder.encode(password), new Wallet());
     }
 }

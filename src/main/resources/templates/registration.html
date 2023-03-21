@@ -25,46 +25,6 @@
               th:errors="*{password}">password error</span><br>
     </div>
 
-    <!--    <label for="confirm">Confirm password: </label>-->
-    <!--    <input type="password" name="confirm"/><br/>-->
-
-    <div>
-        <label for="name">name: </label>
-        <input type="text" th:field="*{name}" id="name"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors()}"
-              th:errors="*{name}">name error</span>
-    </div>
-
-    <div>
-        <label for="lastname">lastname: </label>
-        <input type="text" th:field="*{lastname}" id="lastname"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors()}"
-              th:errors="*{lastname}">lastname error</span>
-    </div>
-
-    <div>
-        <label for="phoneNumber">phoneNumber: </label>
-        <input type="text" th:field="*{phoneNumber}" id="phoneNumber"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors()}"
-              th:errors="*{phoneNumber}">phoneNumber error</span>
-    </div>
-
-    <div>
-        <label for="email">email: </label>
-        <input type="text" th:field="*{email}" id="email"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors()}"
-              th:errors="*{email}">email error</span>
-    </div>
-
-<!--    <div>-->
-<!--        <label for="hobbies">Your hobbies: </label>-->
-<!--        <input type="text" th:field="*{hobbies}" id="hobbies"/>-->
-<!--    </div>-->
-
 
     <input type="submit" value="Register"/>
 
