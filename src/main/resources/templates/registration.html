@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>КУРСОВОЙ ПРОЕКТ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/css/gtvg.css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Register</h1>
+<form method="POST" th:action="@{/register}" th:object="${registerForm}">
+    <div>
+        <label for="username">Username: </label>
+        <input type="text" th:field="*{username}" id="username"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('username')}"
+              th:errors="*{username}">username error</span><br>
+    </div>
+
+    <div>
+        <label for="password">Password: </label>
+        <input type="password" th:field="*{password}" id="password"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}">password error</span><br>
+    </div>
+
+    <!--    <label for="confirm">Confirm password: </label>-->
+    <!--    <input type="password" name="confirm"/><br/>-->
+
+    <div>
+        <label for="name">name: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors()}"
+              th:errors="*{name}">name error</span>
+    </div>
+
+    <div>
+        <label for="lastname">lastname: </label>
+        <input type="text" th:field="*{lastname}" id="lastname"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors()}"
+              th:errors="*{lastname}">lastname error</span>
+    </div>
+
+    <div>
+        <label for="phoneNumber">phoneNumber: </label>
+        <input type="text" th:field="*{phoneNumber}" id="phoneNumber"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors()}"
+              th:errors="*{phoneNumber}">phoneNumber error</span>
+    </div>
+
+    <div>
+        <label for="email">email: </label>
+        <input type="text" th:field="*{email}" id="email"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors()}"
+              th:errors="*{email}">email error</span>
+    </div>
+
+<!--    <div>-->
+<!--        <label for="hobbies">Your hobbies: </label>-->
+<!--        <input type="text" th:field="*{hobbies}" id="hobbies"/>-->
+<!--    </div>-->
+
+
+    <input type="submit" value="Register"/>
+
+    <div th:text="${message}"></div>
+
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+
+</form>
+</body>
+</html>
