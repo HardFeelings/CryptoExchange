@@ -1,10 +1,8 @@
 package com.example.cryptoexchange.entity;
 
-
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -13,17 +11,15 @@ import javax.validation.constraints.Size;
 @RequiredArgsConstructor
 @ToString
 @Entity
-@Table(name = "Wallets")
-public class Wallet {
+@Table(name = "ExchangeRates")
+public class ExchangeRates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double amountBitcoin;
+    private double rateBitcoin;
 
-    private double amountTON;
+    private double rateTON;
 
-    private double amountDC;
-
-    private double amountRub;
+    private double rateDC;
 }

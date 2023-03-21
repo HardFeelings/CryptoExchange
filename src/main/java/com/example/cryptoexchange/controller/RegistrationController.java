@@ -1,7 +1,7 @@
 package com.example.cryptoexchange.controller;
 
 import com.example.cryptoexchange.forms.RegistrationForm;
-import com.example.cryptoexchange.repository.user.UserRepository;
+import com.example.cryptoexchange.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
