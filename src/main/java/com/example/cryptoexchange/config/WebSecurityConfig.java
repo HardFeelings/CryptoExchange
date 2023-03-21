@@ -1,6 +1,6 @@
 package com.example.cryptoexchange.config;
 
-import com.example.cryptoexchange.entity.user.User;
+import com.example.cryptoexchange.entity.User;
 import com.example.cryptoexchange.repository.user.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

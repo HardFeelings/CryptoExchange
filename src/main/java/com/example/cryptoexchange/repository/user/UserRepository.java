@@ -1,7 +1,7 @@
 package com.example.cryptoexchange.repository.user;
 
 
-import com.example.cryptoexchange.entity.user.User;
+import com.example.cryptoexchange.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

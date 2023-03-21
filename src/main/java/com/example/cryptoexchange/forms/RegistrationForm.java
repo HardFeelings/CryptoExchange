@@ -1,6 +1,6 @@
 package com.example.cryptoexchange.forms;
 
-import com.example.cryptoexchange.entity.user.User;
+import com.example.cryptoexchange.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
