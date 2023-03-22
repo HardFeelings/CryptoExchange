@@ -9,18 +9,20 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+//@RequiredArgsConstructor
 @ToString
 @Entity
-@Table(name = "wallet")
+@Table(name = "wallets")
 public class Wallet {
-
-    private static final Long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne
+    @NonNull
+    private User user;
 
     @NonNull
     private double amountBitcoin;

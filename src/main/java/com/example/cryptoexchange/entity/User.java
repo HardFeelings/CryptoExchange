@@ -14,7 +14,7 @@ import java.util.Collection;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = false)
 @RequiredArgsConstructor
 @ToString
 @Entity
@@ -33,6 +33,10 @@ public class User implements UserDetails {
 
     @NonNull
     private String password;
+
+    @OneToOne
+    @NonNull
+    private Wallet wallet;
 
 
     @Override
