@@ -1,7 +1,10 @@
 package com.example.cryptoexchange.controller;
 
+import com.example.cryptoexchange.entity.User;
+import com.example.cryptoexchange.entity.Wallet;
 import com.example.cryptoexchange.forms.RegistrationForm;
 import com.example.cryptoexchange.repository.user.UserRepository;
+import com.example.cryptoexchange.repository.user.WalletRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,18 +26,20 @@ public class RegistrationController {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
+    private WalletRepository walletRepository;
+
     public RegistrationController(
             UserRepository userRepository,
-            PasswordEncoder passwordEncoder
+            PasswordEncoder passwordEncoder,
+            WalletRepository walletRepository
     ) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+        this.walletRepository = walletRepository;
     }
 
-    @ModelAttribute(name = "registerForm")
-    public RegistrationForm registrationForm() {
-        return new RegistrationForm();
-    }
+    @ModelAttribute(name = "user")
+    public User user() {return new User();}
 
     @GetMapping
     public String registerForm() {
@@ -42,21 +47,26 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String processRegistration(@ModelAttribute("registerForm") @Valid RegistrationForm registrationForm,
+    public String processRegistration(@ModelAttribute("user") @Valid User user,
                                       Errors errors,
                                       Model model,
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            log.info("Неудачная попытка валидации с данными: {}", registrationForm.toString());
+            log.info("Неудачная попытка валидации с данными: {}", user.toString());
             model.addAttribute("message", "Ошибка валидации данных, проверьте правильность вводимых полей");
             return "registration";
         }
         try {
-            userRepository.save(registrationForm.toUser(passwordEncoder));
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            Wallet newWallet = new Wallet();
+            user.setWallet(newWallet);
+            walletRepository.save(newWallet);
+            userRepository.save(user);
+
+            log.info("Registered new user " + user);
         } catch (Exception e) {
-            log.info("cannot save");
+            log.info("can't save");
         }
-        log.info("Registered new user" + registrationForm.toUser(passwordEncoder).toString());
         return "redirect:/login";
 
     }

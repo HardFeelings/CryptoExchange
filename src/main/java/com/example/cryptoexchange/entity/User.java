@@ -34,8 +34,9 @@ public class User implements UserDetails {
     @NonNull
     private String password;
 
-    @OneToOne
-    @NonNull
+
+    @OneToOne(optional = false)
+    @JoinColumn(name="wallet_id", unique = true, nullable = false, updatable = false)
     private Wallet wallet;
 
 

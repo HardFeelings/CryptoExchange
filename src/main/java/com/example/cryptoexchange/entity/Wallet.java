@@ -4,7 +4,7 @@ package com.example.cryptoexchange.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+
 
 @Getter
 @Setter
@@ -20,8 +20,7 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @NonNull
+    @OneToOne(optional = false, mappedBy="wallet")
     private User user;
 
     @NonNull
