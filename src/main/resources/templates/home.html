@@ -2,14 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://thymeleaf.org">
 <head>
-    <title>КУРСОВОЙ ПРОЕКТ</title>
+    <title>Home</title>
 </head>
 <body>
-<h1>Log in successfully!</h1>
 
-<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+    <div th:object="${authWallet}">
+        <h4>На вашем счету</h4>
+        <p>BTC: <span th:text="*{amountBitcoin}">BTC</span>.</p>
+        <p>TON: <span th:text="*{amountTON}">TON</span>.</p>
+        <p>DC: <span th:text="*{amountDC}">DC</span>.</p>
+        <p>RUB: <span th:text="*{amountRub}">RUB</span>.</p>
+    </div>
+<br><br><br>
+    <div th:object="${exchangeRates}">
+        <h4>Актуальный курс по отношению к рублю</h4>
+        <p>BTC: <span th:text="*{bitcionRate}">BTC</span>.</p>
+        <p>TON: <span th:text="*{tonRate}">TON</span>.</p>
+        <p>DC: <span th:text="*{dcRate}">DC</span>.</p>
+
+    </div>
 </body>
 </html>
