@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PUBLIC, force = false)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 //@RequiredArgsConstructor
 @ToString
 @Entity
@@ -18,7 +18,7 @@ public class ExchangeRates {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double bitcionRate;
+    private double bitcoinRate;
     private double tonRate;
     private double dcRate;
 }
