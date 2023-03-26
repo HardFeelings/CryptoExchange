@@ -2,9 +2,8 @@ package com.example.cryptoexchange.controller;
 
 import com.example.cryptoexchange.entity.User;
 import com.example.cryptoexchange.entity.Wallet;
-import com.example.cryptoexchange.forms.RegistrationForm;
-import com.example.cryptoexchange.repository.user.UserRepository;
-import com.example.cryptoexchange.repository.user.WalletRepository;
+import com.example.cryptoexchange.repository.UserRepository;
+import com.example.cryptoexchange.repository.WalletRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -60,8 +59,13 @@ public class RegistrationController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             Wallet newWallet = new Wallet();
             user.setWallet(newWallet);
-            walletRepository.save(newWallet);
-            userRepository.save(user);
+            boolean chech = userRepository.existsUserByUsername(user().getUsername());
+            if (!chech){
+                walletRepository.save(newWallet);
+                userRepository.save(user);
+            } else {
+                model.addAttribute("err_message", "Такой пользователь уже существует!");
+            }
 
             log.info("Registered new user " + user);
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-package com.example.cryptoexchange.repository.user;
+package com.example.cryptoexchange.repository;
 
 
 import com.example.cryptoexchange.entity.User;
@@ -12,6 +12,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
     User findUserByUsername(String username);
 
     Long findIdByUsername(String username);
+
+    boolean existsUserByUsername(String username);
 
     List<User> findAll();
 }

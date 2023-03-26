@@ -1,4 +1,4 @@
-package com.example.cryptoexchange.repository.user;
+package com.example.cryptoexchange.repository;
 
 import com.example.cryptoexchange.entity.ExchangeRates;
 import org.springframework.data.repository.CrudRepository;
