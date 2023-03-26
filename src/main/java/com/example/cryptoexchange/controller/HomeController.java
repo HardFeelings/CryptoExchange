@@ -28,14 +28,17 @@ public class HomeController {
     }
 
     @ModelAttribute("exchangeRates")
-    public ExchangeRates exchangeRates(){ return exchangeRatesRepository.findExchangeRatesById(Long.valueOf(0)); }
+    public ExchangeRates exchangeRates() {
+        return exchangeRatesRepository.findFirstById(1L);
+    }
+
     @ModelAttribute("authUser")
-    public User user(@AuthenticationPrincipal User user){
+    public User user(@AuthenticationPrincipal User user) {
         return user;
     }
 
     @ModelAttribute("authWallet")
-    public Wallet wallet(@AuthenticationPrincipal User user){
+    public Wallet wallet(@AuthenticationPrincipal User user) {
         return user.getWallet();
     }
 

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
@@ -18,7 +19,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Bean
     public ApplicationRunner dataLoader(ExchangeRatesRepository exchangeRatesRepository) {
         return args -> {
-            exchangeRatesRepository.save(new ExchangeRates(0L, 3000, 4000, 9000));
+            exchangeRatesRepository.save(new ExchangeRates(1L, 3000, 4000, 9000));
         };
     }
 }
