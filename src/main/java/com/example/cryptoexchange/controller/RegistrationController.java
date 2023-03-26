@@ -59,15 +59,15 @@ public class RegistrationController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             Wallet newWallet = new Wallet();
             user.setWallet(newWallet);
-            boolean chech = userRepository.existsUserByUsername(user().getUsername());
-            if (!chech){
+            if (!userRepository.existsUserByUsername(user.getUsername())){
                 walletRepository.save(newWallet);
                 userRepository.save(user);
+                log.info("Registered new user " + user);
             } else {
                 model.addAttribute("err_message", "Такой пользователь уже существует!");
+                return "registration";
             }
 
-            log.info("Registered new user " + user);
         } catch (Exception e) {
             log.info("can't save");
         }

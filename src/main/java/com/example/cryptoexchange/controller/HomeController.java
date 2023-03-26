@@ -28,9 +28,7 @@ public class HomeController {
     }
 
     @ModelAttribute("exchangeRates")
-    public ExchangeRates exchangeRates(){
-        return exchangeRatesRepository.findExchangeRatesById(Long.valueOf(0));
-    }
+    public ExchangeRates exchangeRates(){ return exchangeRatesRepository.findExchangeRatesById(Long.valueOf(0)); }
     @ModelAttribute("authUser")
     public User user(@AuthenticationPrincipal User user){
         return user;
@@ -45,4 +43,12 @@ public class HomeController {
     public String home(Model model) {
         return "home";
     }
+
+    @GetMapping("/home/buy")
+    public String buy() {
+
+
+        return "buy";
+    }
+
 }

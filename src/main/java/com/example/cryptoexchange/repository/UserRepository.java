@@ -13,6 +13,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     Long findIdByUsername(String username);
 
+
     boolean existsUserByUsername(String username);
 
     List<User> findAll();

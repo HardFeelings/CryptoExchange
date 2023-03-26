@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>buy</title>
+</head>
+<body>
+<div th:object="${authWallet}">
+    <h4>На вашем счету</h4>
+    <p>BTC: <span th:text="*{amountBitcoin}">BTC</span>.</p>
+    <p>TON: <span th:text="*{amountTON}">TON</span>.</p>
+    <p>DC: <span th:text="*{amountDC}">DC</span>.</p>
+    <p>RUB: <span th:text="*{amountRub}">RUB</span>.</p>
+
+    <form method="PUT" th:action="@{/register}" th:object="${authWallet}">
+        <div>
+            <label for="username">Username: </label>
+            <input type="text" th:field="*{username}" id="username"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('username')}"
+                  th:errors="*{username}">username error</span><br>
+        </div>
+
+        <div>
+            <label for="password">Password: </label>
+            <input type="password" th:field="*{password}" id="password"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('password')}"
+                  th:errors="*{password}">password error</span><br>
+        </div>
+
+
+
+        <input type="submit" value="Register"/>
+
+        <div th:text="${err_message}">.</div>
+
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+
+    </form>
+</div>
+</body>
+</html>
